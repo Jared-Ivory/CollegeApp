@@ -36,10 +36,15 @@ public class MainActivity extends AppCompatActivity{
         final QueryBuilder queryBuilder = new QueryBuilder();
 
         queryBuilder
-                .addField(CollegeField.SCHOOLNAME)
+                .addField(CollegeField.SCHOOL_NAME)
                 .addField(CollegeField.ID)
                 .addField(CollegeField.SATSCORES_READING_75TH)
-                .addField(CollegeField.SATSCORES_READING_25TH);
+                .addField(CollegeField.SATSCORES_READING_25TH)
+                .addField(CollegeField.CITY)
+                .addField(CollegeField.STATE)
+                .addField(CollegeField.TUITION_IN_STATE)
+                .addField(CollegeField.TUITION_OUT_OF_STATE)
+                ;
 
         final TextView t = findViewById(R.id.textview);
         final EditText editTextZipcode = findViewById(R.id.editText_zipcode);
@@ -66,7 +71,7 @@ public class MainActivity extends AppCompatActivity{
                  * i.e.
                  * colleges = colleges.stream().filter(p -> p.getSat_scores25th() > 200).collect(Collectors.toList()); */
                 for(College c: colleges){
-                    s+=c.getName()+"\n";
+                    s+=c.prettyString()+"\n";
                 }
                 t.setText(s);
             }
