@@ -1,0 +1,57 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "78c0e8d65ae1b07296542dbcffbe588d",
+    "entities": [
+      {
+        "tableName": "college_table",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`name` TEXT, `id` INTEGER NOT NULL, `schoolurl` TEXT, `sat_scores75th` REAL NOT NULL, `sat_scores25th` REAL NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "schoolurl",
+            "columnName": "schoolurl",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sat_scores75th",
+            "columnName": "sat_scores75th",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sat_scores25th",
+            "columnName": "sat_scores25th",
+            "affinity": "REAL",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"78c0e8d65ae1b07296542dbcffbe588d\")"
+    ]
+  }
+}
