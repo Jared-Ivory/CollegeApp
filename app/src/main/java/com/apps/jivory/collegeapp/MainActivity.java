@@ -1,20 +1,23 @@
 package com.apps.jivory.collegeapp;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.apps.jivory.collegeapp.models.College;
-import com.apps.jivory.collegeapp.models.CollegeField;
-import com.apps.jivory.collegeapp.models.CollegeFilter;
-import com.apps.jivory.collegeapp.models.CollegeQuery;
+import com.apps.jivory.collegeapp.querybuilder.CollegeField;
+import com.apps.jivory.collegeapp.querybuilder.CollegeFilter;
 import com.apps.jivory.collegeapp.viewmodels.MainViewModel;
 import com.facebook.stetho.Stetho;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class MainActivity extends AppCompatActivity{
@@ -30,26 +33,42 @@ public class MainActivity extends AppCompatActivity{
 
         mainViewModel = ViewModelProviders.of(MainActivity.this).get(MainViewModel.class);
 
-        QueryBuilder queryBuilder = new QueryBuilder();
+        final QueryBuilder queryBuilder = new QueryBuilder();
 
         queryBuilder
                 .addField(CollegeField.SCHOOLNAME)
                 .addField(CollegeField.ID)
                 .addField(CollegeField.SATSCORES_READING_75TH)
-                .addField(CollegeField.SATSCORES_READING_25TH)
-                .addFilter(CollegeFilter.DISTANCE, "20mi")
-                .addFilter(CollegeFilter.ZIPCODE, "11713");
+                .addField(CollegeField.SATSCORES_READING_25TH);
 
         final TextView t = findViewById(R.id.textview);
-        t.setText(queryBuilder.getQuery());
+        final EditText editTextZipcode = findViewById(R.id.editText_zipcode);
+        final EditText editTextDistance = findViewById(R.id.editText_distance);
 
-        mainViewModel.searchCollegeScorecard(queryBuilder.getQuery());
 
-        Button b = findViewById(R.id.button1);
-        b.setOnClickListener(new View.OnClickListener() {
+        Button search = findViewById(R.id.search_btn
+        );
+        search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                queryBuilder.addFilter(CollegeFilter.DISTANCE, editTextDistance.getText().toString() + "mi");
+                queryBuilder.addFilter(CollegeFilter.ZIPCODE, editTextZipcode.getText().toString());
+                mainViewModel.searchCollegeScorecard(queryBuilder.getQuery());
+            }
+        });
 
+        mainViewModel.getAllColleges().observe(MainActivity.this, new Observer<List<College>>() {
+            @Override
+            public void onChanged(List<College> colleges) {
+                String s = "";
+
+                /** Can use lambda functions to filter collections
+                 * i.e.
+                 * colleges = colleges.stream().filter(p -> p.getSat_scores25th() > 200).collect(Collectors.toList()); */
+                for(College c: colleges){
+                    s+=c.getName()+"\n";
+                }
+                t.setText(s);
             }
         });
 

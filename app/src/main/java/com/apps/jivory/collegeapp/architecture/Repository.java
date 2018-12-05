@@ -2,16 +2,15 @@ package com.apps.jivory.collegeapp.architecture;
 
 import android.app.Application;
 
-import com.apps.jivory.collegeapp.architecture.CollegeDao;
-import com.apps.jivory.collegeapp.architecture.CollegeDatabase;
 import com.apps.jivory.collegeapp.asynctasks.CSCQueryTask;
-import com.apps.jivory.collegeapp.asynctasks.ClearCollegeDatabaseAsyncTask;
 import com.apps.jivory.collegeapp.asynctasks.InsertCollegeAsyncTask;
 import com.apps.jivory.collegeapp.models.College;
-import com.apps.jivory.collegeapp.models.CollegeQuery;
+import com.apps.jivory.collegeapp.querybuilder.CollegeQuery;
 import com.apps.jivory.collegeapp.models.CollegeScorecardResponse;
 
 import java.util.List;
+
+import androidx.lifecycle.LiveData;
 
 public class Repository {
     private static final String ROOT_URL = "https://api.data.gov/ed/collegescorecard/v1/schools.json?";
@@ -19,9 +18,14 @@ public class Repository {
 
     private CollegeDao collegeDao;
 
+    private LiveData<List<College>> allColleges;
+
     public  Repository(Application application){
         CollegeDatabase db = CollegeDatabase.getInstance(application.getApplicationContext());
         this.collegeDao = db.collegeDao();
+
+        allColleges = collegeDao.getAllColleges();
+
     }
 
     public void searchCollegeScorecard(String query){
@@ -39,5 +43,9 @@ public class Repository {
     private void addColleges(CollegeQuery collegeQuery){
         List<College> colleges = collegeQuery.getColleges();
         new InsertCollegeAsyncTask(collegeDao).execute(colleges.toArray(new College[0]));
+    }
+
+    public LiveData<List<College>> getAllColleges(){
+        return allColleges;
     }
 }

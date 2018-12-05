@@ -1,4 +1,4 @@
-package com.apps.jivory.collegeapp.models;
+package com.apps.jivory.collegeapp.querybuilder;
 
 public enum CollegeField {
     ID("id"),

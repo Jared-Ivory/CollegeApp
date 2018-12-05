@@ -2,6 +2,9 @@ package com.apps.jivory.collegeapp.architecture;
 
 import com.apps.jivory.collegeapp.models.College;
 
+import java.util.List;
+
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -22,8 +25,11 @@ public interface CollegeDao {
     @Delete
     void delete(College college);
 
-
     @Query("Delete FROM college_table")
     void deleteAllColleges();
+
+    @Query("SELECT * FROM college_table")
+    LiveData<List<College>> getAllColleges();
+
 
 }

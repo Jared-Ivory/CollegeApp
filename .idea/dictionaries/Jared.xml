@@ -4,6 +4,7 @@
       <w>gson</w>
       <w>satscores</w>
       <w>stetho</w>
+      <w>zipcode</w>
     </words>
   </dictionary>
 </component>

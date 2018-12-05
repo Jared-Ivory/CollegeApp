@@ -1,5 +1,7 @@
-package com.apps.jivory.collegeapp.models;
+package com.apps.jivory.collegeapp.querybuilder;
 
+import com.apps.jivory.collegeapp.models.College;
+import com.apps.jivory.collegeapp.models.Metadata;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 

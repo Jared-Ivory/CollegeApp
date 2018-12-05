@@ -2,8 +2,8 @@ package com.apps.jivory.collegeapp;
 
 import android.util.Log;
 
-import com.apps.jivory.collegeapp.models.CollegeField;
-import com.apps.jivory.collegeapp.models.CollegeFilter;
+import com.apps.jivory.collegeapp.querybuilder.CollegeField;
+import com.apps.jivory.collegeapp.querybuilder.CollegeFilter;
 
 import java.util.HashMap;
 import java.util.Map;
