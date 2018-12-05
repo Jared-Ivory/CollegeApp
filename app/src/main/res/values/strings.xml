@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">CollegeApp</string>
     <string name="scorecard_api">http://api.data.gov/ed/collegescorecard/v1/schools</string>
+    <string name="noneapplicable">N/A</string>
 </resources>
