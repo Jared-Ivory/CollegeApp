@@ -1,17 +1,14 @@
 package com.apps.jivory.collegeapp;
 
-import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.apps.jivory.collegeapp.models.College;
 import com.apps.jivory.collegeapp.models.CollegeField;
 import com.apps.jivory.collegeapp.models.CollegeFilter;
 import com.apps.jivory.collegeapp.models.CollegeQuery;
-import com.apps.jivory.collegeapp.models.QueryResponse;
 
 
 public class MainActivity extends AppCompatActivity{
