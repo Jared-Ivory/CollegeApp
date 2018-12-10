@@ -16,5 +16,15 @@ public class Metadata {
         this.per_page = per_page;
     }
 
+    public int getAmtResults() {
+        return amtResults;
+    }
 
+    public int getPage() {
+        return page;
+    }
+
+    public int getPer_page() {
+        return per_page;
+    }
 }

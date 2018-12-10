@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.apps.jivory.collegeapp.architecture.Repository;
 import com.apps.jivory.collegeapp.models.College;
+import com.apps.jivory.collegeapp.querybuilder.Query;
 
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class MainViewModel extends AndroidViewModel {
         allColleges = repo.getAllColleges();
     }
 
-    public void searchCollegeScorecard(String query){
+    public void searchCollegeScorecard(Query query){
         repo.searchCollegeScorecard(query);
     }
 

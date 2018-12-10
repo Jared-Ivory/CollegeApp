@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         search.setOnClickListener(v -> {
             queryBuilder.addFilter(CollegeFilter.DISTANCE, editTextDistance.getText().toString() + "mi");
             queryBuilder.addFilter(CollegeFilter.ZIPCODE, editTextZipcode.getText().toString());
-            mainViewModel.searchCollegeScorecard(queryBuilder.getQuery());
+            mainViewModel.searchCollegeScorecard(queryBuilder.createQuery());
         });
 
 

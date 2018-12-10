@@ -24,4 +24,13 @@ public class CollegeQuery {
         return colleges;
     }
 
+    public void addColleges(List<College> colleges){
+        for(College c: colleges){
+            this.colleges.add(c);
+        }
+    }
+
+    public Metadata getMetadata() {
+        return metadata;
+    }
 }

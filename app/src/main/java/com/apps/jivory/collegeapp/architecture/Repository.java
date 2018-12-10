@@ -7,6 +7,7 @@ import com.apps.jivory.collegeapp.asynctasks.InsertCollegeAsyncTask;
 import com.apps.jivory.collegeapp.models.College;
 import com.apps.jivory.collegeapp.querybuilder.CollegeQuery;
 import com.apps.jivory.collegeapp.models.CollegeScorecardResponse;
+import com.apps.jivory.collegeapp.querybuilder.Query;
 
 import java.util.List;
 
@@ -28,8 +29,9 @@ public class Repository {
 
     }
 
-    public void searchCollegeScorecard(String query){
-        query = ROOT_URL + query + "&api_key=" + API_KEY;
+    public void searchCollegeScorecard(Query query){
+        query.setUrl(ROOT_URL);
+        query.setApikey(API_KEY);
         new CSCQueryTask(new CollegeScorecardResponse() {
             @Override
             public void processFinish(CollegeQuery collegeQuery) {
