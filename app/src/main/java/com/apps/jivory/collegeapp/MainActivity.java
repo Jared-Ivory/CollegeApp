@@ -1,8 +1,12 @@
 package com.apps.jivory.collegeapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +15,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.apps.jivory.collegeapp.models.College;
+import com.apps.jivory.collegeapp.models.CollegeAdapter;
 import com.apps.jivory.collegeapp.querybuilder.CollegeField;
 import com.apps.jivory.collegeapp.querybuilder.CollegeFilter;
 import com.apps.jivory.collegeapp.viewmodels.MainViewModel;
@@ -20,8 +25,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity {
     private MainViewModel mainViewModel;
+    private CollegeFragment fragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,57 +36,38 @@ public class MainActivity extends AppCompatActivity{
 
         /** initializes stetho */
         Stetho.initializeWithDefaults(this);
-
-
         mainViewModel = ViewModelProviders.of(MainActivity.this).get(MainViewModel.class);
 
-        final QueryBuilder queryBuilder = new QueryBuilder();
+        QueryBuilder queryBuilder = QueryBuilder.DEFAULT;
+        Button search = findViewById(R.id.search_btn);
 
-        queryBuilder
-                .addField(CollegeField.SCHOOL_NAME)
-                .addField(CollegeField.ID)
-                .addField(CollegeField.SATSCORES_READING_75TH)
-                .addField(CollegeField.SATSCORES_READING_25TH)
-                .addField(CollegeField.CITY)
-                .addField(CollegeField.STATE)
-                .addField(CollegeField.TUITION_IN_STATE)
-                .addField(CollegeField.TUITION_OUT_OF_STATE)
-                ;
+        TextView t = findViewById(R.id.textview);
+        EditText editTextZipcode = findViewById(R.id.editText_zipcode);
+        EditText editTextDistance = findViewById(R.id.editText_distance);
 
-        final TextView t = findViewById(R.id.textview);
-        final EditText editTextZipcode = findViewById(R.id.editText_zipcode);
-        final EditText editTextDistance = findViewById(R.id.editText_distance);
+        fragment = new CollegeFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, fragment).commit();
 
-
-        Button search = findViewById(R.id.search_btn
-        );
-        search.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                queryBuilder.addFilter(CollegeFilter.DISTANCE, editTextDistance.getText().toString() + "mi");
-                queryBuilder.addFilter(CollegeFilter.ZIPCODE, editTextZipcode.getText().toString());
-                mainViewModel.searchCollegeScorecard(queryBuilder.getQuery());
-            }
-        });
-
-        mainViewModel.getAllColleges().observe(MainActivity.this, new Observer<List<College>>() {
-            @Override
-            public void onChanged(List<College> colleges) {
-                String s = "";
-
-                /** Can use lambda functions to filter collections
-                 * i.e.
-                 * colleges = colleges.stream().filter(p -> p.getSat_scores25th() > 200).collect(Collectors.toList()); */
-                for(College c: colleges){
-                    s+=c.prettyString()+"\n";
-                }
-                t.setText(s);
-            }
+        search.setOnClickListener(v -> {
+            queryBuilder.addFilter(CollegeFilter.DISTANCE, editTextDistance.getText().toString() + "mi");
+            queryBuilder.addFilter(CollegeFilter.ZIPCODE, editTextZipcode.getText().toString());
+            mainViewModel.searchCollegeScorecard(queryBuilder.getQuery());
         });
 
 
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        mainViewModel.getAllColleges().observe(this, new Observer<List<College>>() {
+            @Override
+            public void onChanged(List<College> colleges) {
+                fragment.setColleges(colleges);
+            }
+        });
+    }
 }
 
 

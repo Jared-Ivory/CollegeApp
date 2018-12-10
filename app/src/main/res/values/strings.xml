@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">CollegeApp</string>
     <string name="scorecard_api">http://api.data.gov/ed/collegescorecard/v1/schools</string>
+    <string name="scorecard_api_key">71T6y50gHU9RdxbXzBOzcRX93kSMYZqr1p6gV6De</string>
     <string name="noneapplicable">N/A</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

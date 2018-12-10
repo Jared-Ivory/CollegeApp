@@ -3,6 +3,7 @@ package com.apps.jivory.collegeapp.asynctasks;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.apps.jivory.collegeapp.R;
 import com.apps.jivory.collegeapp.querybuilder.CollegeQuery;
 import com.apps.jivory.collegeapp.models.CollegeScorecardResponse;
 import com.google.gson.Gson;

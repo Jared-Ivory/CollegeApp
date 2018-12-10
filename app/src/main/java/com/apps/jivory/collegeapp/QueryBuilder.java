@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.apps.jivory.collegeapp.querybuilder.CollegeField;
 import com.apps.jivory.collegeapp.querybuilder.CollegeFilter;
+import com.apps.jivory.collegeapp.querybuilder.Query;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,6 +15,7 @@ public class QueryBuilder {
     private static final String TAG = "QUERYBUILDER";
     private Map<CollegeFilter, String> filters;
     private Set<CollegeField> fields;
+
 
     public QueryBuilder(){
         filters = new HashMap<>();
@@ -50,4 +52,18 @@ public class QueryBuilder {
         Log.d(TAG, query);
         return query;
     }
+
+    public Query createQuery(){
+        return new Query(filters, fields);
+    }
+
+    public static final QueryBuilder DEFAULT =
+            new QueryBuilder().addField(CollegeField.SCHOOL_NAME)
+                    .addField(CollegeField.ID)
+                    .addField(CollegeField.SATSCORES_READING_75TH)
+                    .addField(CollegeField.SATSCORES_READING_25TH)
+                    .addField(CollegeField.CITY)
+                    .addField(CollegeField.STATE)
+                    .addField(CollegeField.TUITION_IN_STATE)
+                    .addField(CollegeField.TUITION_OUT_OF_STATE);
 }

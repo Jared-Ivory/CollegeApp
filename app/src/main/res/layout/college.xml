@@ -13,26 +13,109 @@
         android:layout_height="wrap_content"
         android:padding="15dp"
         >
-
-        <ImageView
-            android:layout_width="75dp"
-            android:layout_height="75dp"
-            android:src="@drawable/ic_school"
-            />
-        <TextView
-            android:id="@+id/textView_Distance"
+        <LinearLayout
+            android:id="@+id/lLayout_SATScores25th"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:text="Distance #"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            />
+            android:layout_below="@+id/textView_Name"
+            >
+            <TextView
+                android:id="@+id/Satscores25thReading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:text="SAT Scores 25th Reading:"
+                android:layout_marginRight="5dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Widget.DropDownItem"
+                />
+            <TextView
+                android:id="@+id/textView_SATScores25th"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:text="score"
+                android:textAppearance="@style/TextAppearance.AppCompat.Widget.DropDownItem"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/lLayout_SATScores75th"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/lLayout_SATScores25th"
+            >
+            <TextView
+                android:id="@+id/Satscores75thReading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:text="SAT Scores 75th Reading:"
+                android:layout_marginRight="5dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Widget.DropDownItem"
+                />
+            <TextView
+                android:id="@+id/textView_SATScores75th"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:text="score"
+                android:textAppearance="@style/TextAppearance.AppCompat.Widget.DropDownItem"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lLayout_InStateTuituon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/lLayout_SATScores75th"
+            >
+            <TextView
+                android:id="@+id/InStateTuition"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:text="In State Tuition Cost:"
+                android:textAppearance="@style/TextAppearance.AppCompat.Widget.DropDownItem"
+                />
+            <TextView
+                android:id="@+id/textView_InStateTuition"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="score"
+                android:textAppearance="@style/TextAppearance.AppCompat.Widget.DropDownItem"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/lLayout_OutOfStateTuition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/lLayout_InStateTuituon"
+            >
+            <TextView
+                android:id="@+id/OutOfStateTuition"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Out of State Tuition Cost:"
+                android:layout_marginRight="5dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Widget.DropDownItem"
+                />
+            <TextView
+                android:id="@+id/textView_OutOfStateTuition"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="score"
+                android:textAppearance="@style/TextAppearance.AppCompat.Widget.DropDownItem"
+                />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/textView_Name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="N/A"
+            android:text="Name"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             />
         <LinearLayout
@@ -52,30 +135,8 @@
                 android:id="@+id/textView_ID"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/noneapplicable" />
+                android:text="ID" />
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/lLayout_School_ID"
-            >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="School City: "
-                />
-
-            <TextView
-                android:id="@+id/textView_CITY"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/noneapplicable" />
-        </LinearLayout>
-
-
-
 
 
 
